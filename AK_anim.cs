@@ -10,6 +10,12 @@ public class AK_anim : MonoBehaviour
     [SerializeField] private GameObject _springAK;
     [SerializeField] private MeshRenderer _springAKMesh;
     private int _ak_anim;
+    private Animator _animationAK;
+
+    void Start()
+    {
+        _animationAK = _player.GetComponent<Animator>();
+    }
     
     void Update()
     {
@@ -27,19 +33,19 @@ public class AK_anim : MonoBehaviour
             switch (_ak_anim)
             {
                 case 0:
-             _player.GetComponent<Animator>().SetBool("Shot_ak_bool", false);
+             _animationAK.SetBool("Shot_ak_bool", false);
                     break; 
                 case 1:
-             _player.GetComponent<Animator>().SetBool("Shot_ak_bool", false);
+             _animationAK.SetBool("Shot_ak_bool", false);
                     break;   
                 case 2:
-             _player.GetComponent<Animator>().SetBool("Shot_ak_pryshina_off", false);
+             _animationAK.SetBool("Shot_ak_pryshina_off", false);
                     break;
                 case 3:
-             _player.GetComponent<Animator>().SetBool("Shot_ak_bool", false);
+             _animationAK.SetBool("Shot_ak_bool", false);
                     break;   
                 case 4:
-             _player.GetComponent<Animator>().SetBool("Shot_ak_bool", false);
+             _animationAK.SetBool("Shot_ak_bool", false);
                 _ak_anim = 0;
                     break;    
 
@@ -51,20 +57,20 @@ public class AK_anim : MonoBehaviour
         switch (_ak_anim)
             {
                 case 0:
-             _player.GetComponent<Animator>().SetBool("Shot_ak_bool", true);
+             _animationAK.SetBool("Shot_ak_bool", true);
                     break; 
                 case 1:
-             _player.GetComponent<Animator>().SetBool("Shot_ak_bool", true);
+             _animationAK.SetBool("Shot_ak_bool", true);
                     break;   
                 case 2:
-             _player.GetComponent<Animator>().SetBool("Shot_ak_pryshina_off",true);
+             _animationAK.SetBool("Shot_ak_pryshina_off",true);
                 StartCoroutine(Shot_ak_spring_off());
                     break;
                 case 3:
-             _player.GetComponent<Animator>().SetBool("Shot_ak_bool", true);
+             _animationAK.SetBool("Shot_ak_bool", true);
                     break;   
                 case 4:
-             _player.GetComponent<Animator>().SetBool("Shot_ak_bool", true);
+             _animationAK.SetBool("Shot_ak_bool", true);
                 _ak_anim = 0;
                     break;    
 
@@ -76,20 +82,20 @@ public class AK_anim : MonoBehaviour
             switch (_ak_anim)
             {
                 case 1:
-             _player.GetComponent<Animator>().SetBool("Korop_down_ak_bool", true);
+             _animationAK.SetBool("Korop_down_ak_bool", true);
                 StartCoroutine(Box_bool_true());
                 StartCoroutine(Box_off());
                     break;
                 case 2:
-             _player.GetComponent<Animator>().SetBool("Pryshina_down_ak_bool", true);
+             _animationAK.SetBool("Pryshina_down_ak_bool", true);
                 StartCoroutine(Spring_off());
                     break;       
                 case 3:
-             _player.GetComponent<Animator>().SetBool("Pryshina_up_ak_bool", true);
+             _animationAK.SetBool("Pryshina_up_ak_bool", true);
                 StartCoroutine(Spring_on());
                     break;           
                 case 4:
-             _player.GetComponent<Animator>().SetBool("Korop_up_akk_bool", true);
+             _animationAK.SetBool("Korop_up_akk_bool", true);
                 StartCoroutine(Box_on());
                 StartCoroutine(Box_bool_up_true());
                 StartCoroutine(Box_bool_up_true_2());
@@ -102,14 +108,14 @@ public class AK_anim : MonoBehaviour
     {
         yield return new WaitForSeconds(2.3f);
         _boxAKOnHand.SetActive(false);
-        _player.GetComponent<Animator>().SetBool("Korop_down_ak_bool", false);
-        _player.GetComponent<Animator>().SetBool("Korop_up_akk_bool", false);
+        _animationAK.SetBool("Korop_down_ak_bool", false);
+        _animationAK.SetBool("Korop_up_akk_bool", false);
     }
     IEnumerator Box_bool_up_true()
     {
         yield return new WaitForSeconds(2f);
         _boxAKOnHand.SetActive(false);
-        _player.GetComponent<Animator>().SetBool("Korop_up_akk_bool", false);
+        _animationAK.SetBool("Korop_up_akk_bool", false);
     }
     IEnumerator Box_bool_up_true_2()
     {
@@ -133,19 +139,19 @@ public class AK_anim : MonoBehaviour
         yield return new WaitForSeconds(1.52f);
         _springAK.SetActive(false);
         _springAKMesh.enabled = false;
-        _player.GetComponent<Animator>().SetBool("Pryshina_down_ak_bool", false);
+        _animationAK.SetBool("Pryshina_down_ak_bool", false);
 
     }
     IEnumerator Shot_ak_spring_off()
     {
         yield return new WaitForSeconds(0.59f);
-        _player.GetComponent<Animator>().SetBool("Shot_ak_pryshina_off", false);
+        _animationAK.SetBool("Shot_ak_pryshina_off", false);
     }
     IEnumerator Spring_on()
     {
         yield return new WaitForSeconds(1.16f);
         _springAK.SetActive(true);
         _springAKMesh.enabled = true;
-        _player.GetComponent<Animator>().SetBool("Pryshina_up_ak_bool", false);
+        _animationAK.SetBool("Pryshina_up_ak_bool", false);
     }
 }
